@@ -1,1 +1,6 @@
-
+project_id,project_name,route,port,planned_date,actual_date,delay_days,cost,stakeholder,status
+1,Route Optimization,Asia-Europe,Hamburg,2026-01-01,2026-01-03,2,50000,Operations,Delayed
+2,Fleet Upgrade,US-Asia,Singapore,2026-01-05,2026-01-05,0,120000,Engineering,On Track
+3,Port Efficiency,Europe-Africa,Rotterdam,2026-01-07,2026-01-10,3,40000,Logistics,Delayed
+4,Supply Chain Sync,Asia-US,Shanghai,2026-01-10,2026-01-09,-1,60000,Supply Chain,On Track
+5,Customer Experience,Global,Dubai,2026-01-12,2026-01-15,3,30000,Customer Service,Delayed
