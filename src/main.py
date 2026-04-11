@@ -1,5 +1,5 @@
 import pandas as pd
-from src.analysis.kpi_analysis import compute_kpis
+from src.analytics.kpi_tracker import compute_kpis
 
 def main():
     df = pd.read_csv("data/raw/ship_performance.csv")
