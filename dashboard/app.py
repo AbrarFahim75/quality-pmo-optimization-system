@@ -1,7 +1,9 @@
 import sys
 import os
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+# Fix import path
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(BASE_DIR)
 
 import streamlit as st
 import pandas as pd
@@ -27,6 +29,20 @@ st.set_page_config(layout="wide")
 
 
 # ==============================
+# LOAD DATA (CACHED)
+# ==============================
+@st.cache_data
+def load_data():
+    data_path = os.path.join(BASE_DIR, "data", "raw", "ship_performance.csv")
+    df = pd.read_csv(data_path)
+    df = compute_kpis(df)
+    return df
+
+
+df = load_data()
+
+
+# ==============================
 # SIDEBAR
 # ==============================
 st.sidebar.title("Navigation")
@@ -41,19 +57,13 @@ st.sidebar.markdown("### Project Info")
 st.sidebar.write("Maritime Optimization System")
 st.sidebar.write("Author: Md Abrar Fahim")
 
+
 # ==============================
 # TITLE
 # ==============================
 st.title("Maritime Performance Optimization System")
 st.markdown("### Analytics & Decision Support Dashboard")
 st.markdown("---")
-
-
-# ==============================
-# LOAD DATA
-# ==============================
-df = pd.read_csv("data/raw/ship_performance.csv")
-df = compute_kpis(df)
 
 
 # ==============================
@@ -88,11 +98,25 @@ st.sidebar.write(f"Filtered rows: {filtered_df.shape[0]}")
 
 
 # ==============================
-# INSIGHTS
+# SAFETY CHECK (IMPORTANT)
 # ==============================
-insights = get_insights(filtered_df)
-summary = generate_summary(insights)
-recommendations = generate_recommendations(summary)
+if filtered_df.empty:
+    st.warning("No data available for selected filters.")
+    st.stop()
+
+
+# ==============================
+# INSIGHTS (CACHED)
+# ==============================
+@st.cache_data
+def compute_all(df):
+    insights = get_insights(df)
+    summary = generate_summary(insights)
+    recommendations = generate_recommendations(summary)
+    return insights, summary, recommendations
+
+
+insights, summary, recommendations = compute_all(filtered_df)
 
 
 # ==============================
@@ -100,11 +124,9 @@ recommendations = generate_recommendations(summary)
 # ==============================
 if section == "Dashboard":
 
-    # ==============================
     # KPI SECTION
-    # ==============================
     st.markdown("## Key Performance Indicators")
-    st.caption("Aggregated performance metrics based on selected filters")
+    st.caption("Overview of operational performance across selected filters")
 
     col1, col2, col3 = st.columns(3)
 
@@ -114,11 +136,8 @@ if section == "Dashboard":
 
     st.markdown("---")
 
-    # ==============================
     # DATA OVERVIEW
-    # ==============================
-    st.markdown("## Operational Data Snapshot")
-
+    st.markdown("## Data Overview")
     st.write(f"Rows: {filtered_df.shape[0]} | Columns: {filtered_df.shape[1]}")
 
     st.write("### Preview (First 5 rows)")
@@ -129,14 +148,12 @@ if section == "Dashboard":
 
     st.markdown("---")
 
-    # ==============================
     # PERFORMANCE ANALYSIS
-    # ==============================
     st.markdown("## Performance Analysis")
 
     col1, col2 = st.columns(2)
 
-    # -------- PROFIT (Highlight Best/Worst) --------
+    # PROFIT CHART (highlight best/worst)
     df_profit = insights["profit_by_ship"].reset_index()
 
     df_profit["Highlight"] = df_profit["Ship_Type"].apply(
@@ -153,7 +170,7 @@ if section == "Dashboard":
         color_discrete_map={
             "Best": "green",
             "Worst": "red",
-            "Normal": "lightgray"
+            "Normal": "#A0AEC0"
         },
         title="Profit by Ship Type"
     )
@@ -164,14 +181,14 @@ if section == "Dashboard":
     with col1:
         st.plotly_chart(fig1, use_container_width=True)
 
-    # -------- DELAY --------
+    # DELAY CHART
     fig2 = px.bar(
         insights["delay_by_route"].reset_index(),
         x="Route_Type",
         y="Turnaround_Time_hours",
-        title="Delay by Route Type",
         color="Turnaround_Time_hours",
-        color_continuous_scale="Reds_r"
+        color_continuous_scale="Reds_r",
+        title="Delay by Route Type"
     )
 
     fig2.update_traces(marker_line_color='black', marker_line_width=1, opacity=0.9)
@@ -180,14 +197,14 @@ if section == "Dashboard":
     with col2:
         st.plotly_chart(fig2, use_container_width=True)
 
-    # -------- EFFICIENCY --------
+    # EFFICIENCY CHART
     fig3 = px.bar(
         insights["efficiency_by_engine"].reset_index(),
         x="Engine_Type",
         y="Efficiency_nm_per_kWh",
-        title="Efficiency by Engine Type",
         color="Efficiency_nm_per_kWh",
-        color_continuous_scale="Greens_r"
+        color_continuous_scale="Greens_r",
+        title="Efficiency by Engine Type"
     )
 
     fig3.update_traces(marker_line_color='black', marker_line_width=1, opacity=0.9)
@@ -195,9 +212,9 @@ if section == "Dashboard":
 
     st.plotly_chart(fig3, use_container_width=True)
 
-    # ==============================
-    # KEY OBSERVATIONS (CARD STYLE)
-    # ==============================
+    st.markdown("---")
+
+    # KEY OBSERVATIONS
     st.markdown("### Key Observations")
 
     st.info(f"""
@@ -209,9 +226,7 @@ if section == "Dashboard":
 
     st.markdown("---")
 
-    # ==============================
     # SUMMARY
-    # ==============================
     st.markdown("## Summary Insights")
 
     st.write(f"Best Ship Type: {summary['best_ship']}")
@@ -221,9 +236,7 @@ if section == "Dashboard":
 
     st.markdown("---")
 
-    # ==============================
     # RECOMMENDATIONS
-    # ==============================
     st.markdown("## Recommendations")
 
     for rec in recommendations:
@@ -231,14 +244,12 @@ if section == "Dashboard":
 
     st.markdown("---")
 
-    # ==============================
     # REPORT
-    # ==============================
     st.markdown("## Project Report")
 
     report = generate_report(summary, recommendations)
 
-    st.text(report)
+    st.code(report, language="text")
 
     st.download_button(
         label="Download Report",
