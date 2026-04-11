@@ -1,17 +1,19 @@
-![Dashboard](docs/dashboard.png)
+# 🚢 Maritime Performance Optimization System
 
-# Quality & Pmo Optimization System
+![Dashboard](docs/dashboard.png)
 
 ## 📌 Overview
 
-This project is an end-to-end **data analytics and decision-support system** designed to analyze maritime operational performance and generate actionable optimization insights.
+This project simulates a real-world maritime operations analytics system designed to improve efficiency, reduce delays, and optimize profitability using data-driven insights.
 
-The system processes real-world ship performance data to evaluate:
-- Profitability
-- Operational efficiency
-- Route delays
+It is built as an end-to-end **data analytics and decision-support system** that processes ship performance data and transforms it into actionable business recommendations.
 
-It then transforms these insights into **business-driven recommendations** to improve performance and decision-making.
+The system evaluates:
+- Profitability  
+- Operational efficiency  
+- Route delays  
+
+and provides optimization insights to support better decision-making in maritime and logistics operations.
 
 ---
 
