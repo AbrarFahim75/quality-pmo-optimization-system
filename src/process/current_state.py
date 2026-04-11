@@ -1,2 +1,6 @@
-def analyze_current_state(df):
-    return df.describe()
+def current_process():
+    return {
+        "Delay Handling": "Manual analysis",
+        "Decision Making": "Reactive",
+        "Data Usage": "Limited"
+    }

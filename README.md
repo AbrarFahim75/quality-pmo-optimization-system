@@ -124,6 +124,7 @@ pip install pandas streamlit
 
 ### 3. Run the dashboard
 streamlit run dashboard/app.py
+
 ---
 
 ## 📊 Features
