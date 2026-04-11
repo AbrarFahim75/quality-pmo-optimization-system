@@ -1,24 +1,52 @@
-# Quality & PMO Optimization System
+# 🚢 Maritime Performance Optimization System
 
 ## 📌 Overview
 
-This project simulates a real-world Project Management Office (PMO) environment focused on quality development, KPI tracking, and process optimization.
+This project is an end-to-end **data analytics and decision-support system** designed to analyze maritime operational performance and generate actionable optimization insights.
 
-It is inspired by enterprise use cases in logistics and operations, where data-driven decision-making is essential for improving performance and ensuring stakeholder alignment.
+The system processes real-world ship performance data to evaluate:
+- Profitability
+- Operational efficiency
+- Route delays
+
+It then transforms these insights into **business-driven recommendations** to improve performance and decision-making.
 
 ---
 
-## 🎯 Objectives
+## 🎯 Key Features
 
-* Track project performance and milestones
-* Monitor key KPIs (delivery, delays, efficiency)
-* Analyze operational data
-* Identify process inefficiencies
-* Propose data-driven improvements
+### 📊 KPI Engine
+- Profit calculation per voyage
+- Efficiency classification
+- Delay risk identification
+
+### 📈 Analytics & Insights
+- Profit comparison across ship types
+- Delay analysis by route
+- Efficiency evaluation by engine type
+
+### 🔥 Automated Insights
+- Best & worst performing ship types
+- Most delayed routes
+- Most efficient engine configurations
+
+### 🚀 Optimization Engine
+- Generates actionable recommendations:
+  - Improve low-performing ship types
+  - Reduce route delays
+  - Optimize engine selection
+
+### 🖥️ Interactive Dashboard
+Built using **Streamlit**:
+- Real-time visualizations
+- KPI metrics
+- Summary insights
+- Optimization recommendations
 
 ---
 
 ## 🧱 Project Structure
+
 
 ```
 quality-pmo-optimization-system/
@@ -81,13 +109,17 @@ quality-pmo-optimization-system/
 
 ---
 
-## ⚙️ Tech Stack
+## ⚙️ How to Run
 
-* Python (Pandas, NumPy)
-* Streamlit (Dashboard)
-* Scikit-learn (optional)
-* SQL (optional)
+### 1. Create virtual environment
+python -m venv venv
+.\venv\Scripts\Activate.ps1
 
+### 2. Install dependencies
+pip install pandas streamlit
+
+### 3. Run the dashboard
+streamlit run dashboard/app.py
 ---
 
 ## 📊 Features
@@ -111,3 +143,4 @@ quality-pmo-optimization-system/
 ## 👤 Author
 
 Md Abrar Fahim
+B.Sc. Information Engineering — HAW Hamburg
