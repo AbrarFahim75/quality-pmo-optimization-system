@@ -1,56 +1,64 @@
-# 🚢 Maritime Performance Optimization System
+# Quality & PMO Optimization
 
 ![Dashboard](docs/dashboard.png)
 
-## 📌 Overview
+## Overview
 
-This project simulates a real-world maritime operations analytics system designed to improve efficiency, reduce delays, and optimize profitability using data-driven insights.
+This project simulates a real-world maritime operations analytics system designed to improve operational efficiency, reduce delays, and optimize profitability through data-driven insights.
 
 It is built as an end-to-end **data analytics and decision-support system** that processes ship performance data and transforms it into actionable business recommendations.
 
-The system evaluates:
-- Profitability  
-- Operational efficiency  
-- Route delays  
-
-and provides optimization insights to support better decision-making in maritime and logistics operations.
+### Key objectives:
+- Analyze profitability across ship types  
+- Identify operational inefficiencies  
+- Detect delay patterns across routes  
+- Support data-driven decision-making  
 
 ---
 
-## 🎯 Key Features
+## Key Features
 
-### 📊 KPI Engine
-- Profit calculation per voyage
-- Efficiency classification
-- Delay risk identification
+### KPI Engine
+- Profit calculation per voyage  
+- Efficiency measurement (nm per kWh)  
+- Delay detection and tracking  
 
-### 📈 Analytics & Insights
-- Profit comparison across ship types
-- Delay analysis by route
-- Efficiency evaluation by engine type
+### Analytics & Insights
+- Profit comparison across ship types  
+- Delay analysis by route type  
+- Efficiency evaluation by engine type  
 
-### 🔥 Automated Insights
-- Best & worst performing ship types
-- Most delayed routes
-- Most efficient engine configurations
+### Automated Insights
+- Best and worst performing ship categories  
+- Most delayed routes  
+- Most efficient engine configurations  
 
-### 🚀 Optimization Engine
+### Optimization Engine
 - Generates actionable recommendations:
-  - Improve low-performing ship types
-  - Reduce route delays
-  - Optimize engine selection
+  - Improve low-performing ship types  
+  - Reduce delays on inefficient routes  
+  - Optimize engine selection  
 
-### 🖥️ Interactive Dashboard
+### Interactive Dashboard
 Built using **Streamlit**:
-- Real-time visualizations
-- KPI metrics
-- Summary insights
-- Optimization recommendations
+- Real-time KPI monitoring  
+- Interactive visualizations  
+- Filtering by ship, route, and engine type  
+- Business-oriented insights and recommendations  
 
 ---
 
-## 🧱 Project Structure
+## Tech Stack
 
+- Python  
+- Pandas  
+- Plotly  
+- Streamlit  
+- Scikit-learn (for extensibility)  
+
+---
+
+## Project Structure
 
 ```
 quality-pmo-optimization-system/
@@ -113,39 +121,45 @@ quality-pmo-optimization-system/
 
 ---
 
-## ⚙️ How to Run
+## How to Run
 
-### 1. Create virtual environment
+### 1. Create a virtual environment
+```bash
 python -m venv venv
 .\venv\Scripts\Activate.ps1
+```
 
 ### 2. Install dependencies
-pip install pandas streamlit
+```bash
+pip install -r requirements.txt
+```
 
 ### 3. Run the dashboard
+```bash
 streamlit run dashboard/app.py
+```
 
 ---
 
-## 📊 Features
+## Example Insights
 
-* KPI tracking system
-* Project & milestone monitoring
-* Delay and root cause analysis
-* Process optimization suggestions
-* Interactive dashboard
-
----
-
-## 🚀 Future Improvements
-
-* Integration with real-world datasets
-* Machine learning for predictive analytics
-* Automated reporting using LLMs
+- Fish Carrier shows the highest profitability  
+- Tanker demonstrates comparatively lower performance  
+- Long-haul routes experience the highest delays  
+- Steam Turbine engines provide the best efficiency  
 
 ---
 
-## 👨‍💻 Author
+## Future Improvements
+
+- Integration with real-world maritime datasets  
+- Machine learning for predictive analytics  
+- Automated reporting using LLMs  
+- Deployment with live data pipelines  
+
+---
+
+## Author
 
 **Md Abrar Fahim**  
 B.Sc. Information Engineering — HAW Hamburg
