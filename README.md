@@ -144,7 +144,7 @@ streamlit run dashboard/app.py
 
 ---
 
-## 👤 Author
+## 👨‍💻 Author
 
-Md Abrar Fahim
+**Md Abrar Fahim**  
 B.Sc. Information Engineering — HAW Hamburg
