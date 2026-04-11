@@ -1,3 +1,5 @@
+![Dashboard](docs/dashboard.png)
+
 # 🚢 Maritime Performance Optimization System
 
 ## 📌 Overview

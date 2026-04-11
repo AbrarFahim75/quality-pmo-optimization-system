@@ -14,7 +14,7 @@ from src.process.optimizer import generate_recommendations
 # ==============================
 # TITLE
 # ==============================
-st.title("🚢 AI-Powered Maritime Performance Optimization System")
+st.title("🚢 Maritime Performance Optimization System")
 
 
 # ==============================
